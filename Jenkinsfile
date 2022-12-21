@@ -1,6 +1,10 @@
 pipeline
 {
     agent { label 'master' }
+    tools
+    {
+        maven 'maven'
+    }
     stages
     {
         stage('continuous download')
@@ -82,7 +86,7 @@ pipeline
         {
             steps
             {
-                deploy adapters: [tomcat9(credentialsId: '212218ef-3936-4650-9659-6d1a636b1c10', path: '', url: 'http://172.31.36.158:8080/')], contextPath: 'prod', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: '212218ef-3936-4650-9659-6d1a636b1c10', path: '', url: 'http://15.206.167.167:8080/')], contextPath: 'prod', war: '**/*.war'
             }
         }
 
