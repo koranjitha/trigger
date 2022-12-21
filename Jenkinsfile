@@ -107,7 +107,7 @@ pipeline
         }
         failure
         {
-            mail bcc: '', body: 'CI PIPELINE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
+            mail bcc: '', body: 'CI PIPELINE IS FAILED', cc: '', from: '', replyTo: '', subject: 'kgdusd  ', to: 'koranjitha@gmail.com'
         }
         always
         {
