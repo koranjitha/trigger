@@ -4,7 +4,8 @@ pipeline
     tools
     {
         maven 'maven'
-    } 
+    }
+    
     environment
     {
       TOMCAT_PATH = "/home/ec2-user/apache-tomcat-9.0.70/webapps"
@@ -56,11 +57,13 @@ pipeline
                {
                  try 
                  {
-                     deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://65.2.170.154:8080/')], contextPath: 'testapp', war: '**/*.war'
+                    deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://15.206.167.167:8080/')], contextPath: 'jit', war: '**/*.war'
+                 
+                 
                  }
                  catch(Exception e3)
                  {
-                     mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'devops@xyz.com'
+                     mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
                      exit(1)
                  }
                }
@@ -80,7 +83,7 @@ pipeline
                  }
                  catch(Exception e4)
                  {
-                   mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'testing@xyz.com'
+                   mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
                    exit(1)
                  }
                }
@@ -90,7 +93,8 @@ pipeline
         {
             steps
             {
-                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://172.31.40.147:8080/')], contextPath: 'prod', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://15.206.167.167:8080/')], contextPath: 'jita', war: '**/*.war'
+                
             }
         }
 
@@ -103,7 +107,7 @@ pipeline
         }
         failure
         {
-            mail bcc: '', body: 'CI PIPELINE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'team@xyz.com'
+            mail bcc: '', body: 'CI PIPELINE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
         }
         always
         {
