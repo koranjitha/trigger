@@ -3,11 +3,11 @@ pipeline
     agent { label 'master' }
     tools
     {
-        maven 'dev'
+        maven 'maven'
     } 
     environment
     {
-      TOMCAT_PATH = "/usr/share/tomcat/webapps"
+      TOMCAT_PATH = "/home/ec2-user/apache-tomcat-9.0.70/webapps"
     }
     stages
     {
@@ -23,7 +23,7 @@ pipeline
                   }
                   catch(Exception e1)
                   {
-                     mail bcc: '', body: 'DOWNLOADING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'github@xyz.com'
+                     mail bcc: '', body: 'DOWNLOADING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
                      exit(1)
                   }
                 }
@@ -41,7 +41,7 @@ pipeline
                  }
                  catch(Exception e2)
                  {
-                     mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'dev@xyz.com'
+                     mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
                      exit(1)
                  }
                }
@@ -56,7 +56,7 @@ pipeline
                {
                  try 
                  {
-                     deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://172.31.40.147:8080/')], contextPath: 'testapp', war: '**/*.war'
+                     deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://65.2.170.154:8080/')], contextPath: 'testapp', war: '**/*.war'
                  }
                  catch(Exception e3)
                  {
