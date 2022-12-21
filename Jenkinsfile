@@ -5,6 +5,11 @@ pipeline
     {
         maven 'maven'
     }
+    
+    environment
+    {
+      TOMCAT_PATH = "/home/ec2-user/apache-tomcat-9.0.70/webapps"
+    }
     stages
     {
         stage('continuous download')
@@ -19,7 +24,7 @@ pipeline
                   }
                   catch(Exception e1)
                   {
-                     mail bcc: '', body: 'DOWNLOADING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'github@xyz.com'
+                     mail bcc: '', body: 'DOWNLOADING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
                      exit(1)
                   }
                 }
@@ -37,7 +42,7 @@ pipeline
                  }
                  catch(Exception e2)
                  {
-                     mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'dev@xyz.com'
+                     mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
                      exit(1)
                  }
                }
@@ -52,11 +57,11 @@ pipeline
                {
                  try 
                  {
-                     deploy adapters: [tomcat9(credentialsId: '212218ef-3936-4650-9659-6d1a636b1c10', path: '', url: 'http://172.31.36.158:8080/')], contextPath: 'testapp', war: '**/*.war'
+                     deploy adapters: [tomcat9(credentialsId: '212218ef-3936-4650-9659-6d1a636b1c10', path: '', url: 'http://15.206.167.167:8080')], contextPath: 'testapp', war: '**/*.war'
                  }
                  catch(Exception e3)
                  {
-                     mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'devops@xyz.com'
+                     mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
                      exit(1)
                  }
                }
@@ -76,7 +81,7 @@ pipeline
                  }
                  catch(Exception e4)
                  {
-                   mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'testing@xyz.com'
+                   mail bcc: '', body: 'BUILDING CODE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
                    exit(1)
                  }
                }
@@ -99,7 +104,7 @@ pipeline
         }
         failure
         {
-            mail bcc: '', body: 'CI PIPELINE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'team@xyz.com'
+            mail bcc: '', body: 'CI PIPELINE IS FAILED', cc: '', from: '', replyTo: '', subject: '', to: 'koranjitha@gmail.com'
         }
         always
         {
